@@ -1,5 +1,4 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, ElementRef, Injector, ViewChild, ViewContainerRef } from '@angular/core';
-import { GreenTextComponent } from './green-text/green-text.component';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { DynamicHTMLComponent } from './dynamic-html/dynamic-html.component';
 
 @Component({

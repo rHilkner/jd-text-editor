@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders, ANALYZE_FOR_ENTRY_COMPONENTS } from '@angular/core';
+import { ANALYZE_FOR_ENTRY_COMPONENTS, ModuleWithProviders, NgModule } from '@angular/core';
 import { DynamicHTMLComponent } from './dynamic-html.component';
 import { DynamicHTMLOptions } from './dynamic-html.options';
 import { DynamicHTMLRenderer } from './dynamic-html.renderer';

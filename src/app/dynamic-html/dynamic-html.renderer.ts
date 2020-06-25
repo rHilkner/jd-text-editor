@@ -1,4 +1,4 @@
-import { Injectable, Injector, ElementRef, ComponentFactoryResolver, ComponentFactory, ComponentRef } from '@angular/core';
+import { ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, Injectable, Injector } from '@angular/core';
 import { DynamicHTMLOptions } from './dynamic-html.options';
 import { OnMount } from './dynamic-html.interfaces';
 

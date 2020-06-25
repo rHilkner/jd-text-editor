@@ -1,14 +1,6 @@
-import {
-    Component,
-    ElementRef,
-    Input,
-    SimpleChanges,
-    OnChanges,
-    OnDestroy,
-    DoCheck, Output, EventEmitter,
-} from '@angular/core';
+import { Component, DoCheck, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges, } from '@angular/core';
 
-import { DynamicHTMLRenderer, DynamicHTMLRef } from './dynamic-html.renderer';
+import { DynamicHTMLRef, DynamicHTMLRenderer } from './dynamic-html.renderer';
 
 @Component({
     selector: 'app-dynamic-html',
