@@ -1,6 +1,6 @@
 import { ComponentFactory, ComponentFactoryResolver, ComponentRef, ElementRef, Injectable, Injector } from '@angular/core';
 import { DynamicHTMLOptions } from './dynamic-html.options';
-import { OnMount } from './dynamic-html.interfaces';
+import { DynamicComponent } from './dynamic-html.interfaces';
 
 export interface DynamicHTMLRef {
     check: () => void;
@@ -51,7 +51,7 @@ export class DynamicHTMLRenderer {
                             attrsMap.set(attr.name, attr.value);
                         });
                     }
-                    (cmpRef.instance as OnMount).dynamicOnMount(attrsMap, content, el);
+                    (cmpRef.instance as DynamicComponent).dynamicOnMount(attrsMap, content, el);
                 }
 
                 componentRefs.push(cmpRef);

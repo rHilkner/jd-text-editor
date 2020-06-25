@@ -1,22 +1,18 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { OnMount } from '../dynamic-html/dynamic-html.interfaces';
+import { DynamicComponent } from '../dynamic-html/dynamic-html.interfaces';
 
 @Component({
     selector: 'app-green-text',
     templateUrl: './green-text.component.html',
     styleUrls: ['./green-text.component.scss']
 })
-export class GreenTextComponent implements OnInit, OnMount {
+export class GreenTextComponent implements DynamicComponent {
 
     @Input() text: string;
     @Input() fieldId: string;
     @Output() contentChanged = new EventEmitter();
 
     constructor(private eRef: ElementRef) {}
-
-    ngOnInit(): void {
-        console.log('Initialized app-green-text');
-    }
 
     dynamicOnMount(attrs?: Map<string, string>, content?: string, element?: Element): void {
         this.text = attrs.get('text');

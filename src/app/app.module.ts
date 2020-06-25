@@ -5,18 +5,21 @@ import { AppComponent } from './app.component';
 import { GreenTextComponent } from './green-text/green-text.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { DynamicHTMLModule } from './dynamic-html/dynamic-html.index';
+import { JdFieldComponent } from './jd-field/jd-field.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         GreenTextComponent,
-        SafeHtmlPipe
+        SafeHtmlPipe,
+        JdFieldComponent
     ],
     imports: [
         BrowserModule,
         DynamicHTMLModule.forRoot({
             components: [
-                {component: GreenTextComponent, selector: 'app-green-text'}
+                {component: GreenTextComponent, selector: 'app-green-text'},
+                {component: JdFieldComponent, selector: 'jd-field'}
             ]
         })
     ],
