@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DynamicComponent } from '../dynamic-html/dynamic-html.interfaces';
 
 @Component({
