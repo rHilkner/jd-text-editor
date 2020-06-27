@@ -1,5 +1,7 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { DynamicHTMLComponent } from './dynamic-html/dynamic-html.component';
+import { DataService } from './data.service';
+import { JdFieldComponent } from './jd-field/jd-field.component';
 
 @Component({
     selector: 'app-root',
@@ -8,21 +10,20 @@ import { DynamicHTMLComponent } from './dynamic-html/dynamic-html.component';
 })
 export class AppComponent implements AfterViewInit {
 
-    content = `<p>This is a paragraph... And this is a <app-green-text #dynamicComponent fieldId="abc" text="green text" (contentChanged)="greenTextContentChanged($event)"></app-green-text></p>`;
-
     @ViewChild(DynamicHTMLComponent) myRef: DynamicHTMLComponent;
+    @ViewChildren(JdFieldComponent) jdFieldComponentList: QueryList<JdFieldComponent>;
 
-    constructor() {}
+    constructor(private getJdHtmlService: DataService) {}
 
     ngAfterViewInit(): void {
-        // const factory = this.componentFactoryResolver.resolveComponentFactory(GreenTextComponent);
-        // const ref2 = factory.create(this.injector);
-        // const ref = this.myRef.createComponent(factory);
-        // ref2.changeDetectorRef.detectChanges();
+        console.log(this.jdFieldComponentList);
     }
 
     contentChanged(newContent: string) {
         console.log(newContent);
     }
 
+    getJdHtmlContent(): string {
+        return this.getJdHtmlService.getJdHtml();
+    }
 }

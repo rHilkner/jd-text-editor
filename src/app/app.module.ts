@@ -6,13 +6,15 @@ import { GreenTextComponent } from './green-text/green-text.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { DynamicHTMLModule } from './dynamic-html/dynamic-html.index';
 import { JdFieldComponent } from './jd-field/jd-field.component';
+import { JdDocumentComponent } from './jd-document/jd-document.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         GreenTextComponent,
         SafeHtmlPipe,
-        JdFieldComponent
+        JdFieldComponent,
+        JdDocumentComponent
     ],
     imports: [
         BrowserModule,

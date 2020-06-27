@@ -1,4 +1,15 @@
-import { Component, DoCheck, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChanges, } from '@angular/core';
+import {
+    Component,
+    DoCheck,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    Output,
+    SimpleChanges,
+    ViewChildren,
+} from '@angular/core';
 
 import { DynamicHTMLRef, DynamicHTMLRenderer } from './dynamic-html.renderer';
 
@@ -7,6 +18,7 @@ import { DynamicHTMLRef, DynamicHTMLRenderer } from './dynamic-html.renderer';
     template: '',
 })
 export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
+
     @Input() content: string;
     @Output() contentChanged = new EventEmitter();
 
@@ -43,4 +55,5 @@ export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
             this.ref = null;
         }
     }
+
 }
