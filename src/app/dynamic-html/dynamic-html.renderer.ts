@@ -51,7 +51,7 @@ export class DynamicHTMLRenderer {
                             attrsMap.set(attr.name, attr.value);
                         });
                     }
-                    (cmpRef.instance as DynamicComponent).dynamicOnMount(attrsMap, content, el);
+                    (cmpRef.instance as DynamicComponent).onMount(attrsMap, content, el);
                 }
 
                 componentRefs.push(cmpRef);

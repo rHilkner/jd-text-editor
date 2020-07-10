@@ -1,22 +1,33 @@
-import { AfterViewInit, Component, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { DynamicHTMLComponent } from './dynamic-html/dynamic-html.component';
 import { DataService } from './data.service';
 import { JdFieldComponent } from './jd-field/jd-field.component';
+import { JdField } from './models/jd-field.model';
+import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
     @ViewChild(DynamicHTMLComponent) myRef: DynamicHTMLComponent;
     @ViewChildren(JdFieldComponent) jdFieldComponentList: QueryList<JdFieldComponent>;
 
-    constructor(private getJdHtmlService: DataService) {}
+    jdFields: JdField[];
+
+    constructor(private dataService: DataService) {}
+
+    ngOnInit(): void {
+        this.dataService.jdFieldsObservable.subscribe(jdFields => {
+            this.jdFields = jdFields;
+            console.log(jdFields);
+            console.log(this.jdFieldComponentList);
+        });
+    }
 
     ngAfterViewInit(): void {
-        console.log(this.jdFieldComponentList);
     }
 
     contentChanged(newContent: string) {
@@ -24,6 +35,6 @@ export class AppComponent implements AfterViewInit {
     }
 
     getJdHtmlContent(): string {
-        return this.getJdHtmlService.getJdHtml();
+        return this.dataService.getJdHtml();
     }
 }

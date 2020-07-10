@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
 import { DynamicComponent } from '../dynamic-html/dynamic-html.interfaces';
 
 @Component({
@@ -14,7 +14,8 @@ export class GreenTextComponent implements DynamicComponent {
 
     constructor(private eRef: ElementRef) {}
 
-    dynamicOnMount(attrs?: Map<string, string>, content?: string, element?: Element): void {
+    onMount(attrs?: Map<string, string>, content?: string, element?: Element): void {
+        console.log('asddsadssa');
         this.text = attrs.get('text');
     }
 

@@ -1,5 +1,7 @@
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { DynamicComponent } from '../dynamic-html/dynamic-html.interfaces';
+import { JdField } from '../models/jd-field.model';
+import { DataService } from '../data.service';
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -9,26 +11,40 @@ import { DynamicComponent } from '../dynamic-html/dynamic-html.interfaces';
 })
 export class JdFieldComponent implements DynamicComponent {
 
-    constructor(private eRef: ElementRef) {}
+    constructor(private eRef: ElementRef/*,
+                private dataService: DataService */) {}
 
     @Input() id: string;
     @Input() title: string;
     @Input() value: string;
-    @Output() contentChanged = new EventEmitter();
+    @Input() order: number;
 
     private originalValue: string;
 
-    dynamicOnMount(attrs?: Map<string, string>, content?: string, element?: Element): void {
+    onMount(attrs?: Map<string, string>, content?: string, element?: Element): void {
+        console.log('asddsadssa');
         this.id = attrs.get('id');
         this.title = attrs.get('title');
         this.value = attrs.get('value');
+        this.order = Number(attrs.get('order'));
         this.originalValue = this.value;
+        // this.dataService.addJdFieldComponent(this);
+        console.log('asddsadssa');
+    }
+
+    get jdField() {
+        const jdField = new JdField();
+        jdField.id = this.id;
+        jdField.title = this.title;
+        jdField.value = this.value;
+        jdField.order = this.order;
+        return jdField;
     }
 
     setNewValue(newValue: string) {
         if (this.value !== newValue) {
             this.value = newValue;
-            this.contentChanged.emit(this.buildHtmlString());
+            // this.dataService.emitJdFields();
         }
     }
 
@@ -44,9 +60,10 @@ export class JdFieldComponent implements DynamicComponent {
     buildHtmlString() {
         const tagName = this.eRef.nativeElement.tagName;
         return `<` + tagName +
-            ` id="` + this.id + `"` +
-            ` title="` + this.title + `"` +
-            ` value="` + this.value + `">` +
+            ` id="` + this.jdField.id + `"` +
+            ` title="` + this.jdField.title + `"` +
+            ` value="` + this.jdField.value + `">` +
+            ` order="` + this.jdField.order + `">` +
             `</` + tagName + `>`;
     }
 }

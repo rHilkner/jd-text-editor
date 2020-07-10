@@ -1,3 +1,10 @@
-<div>
-    <app-dynamic-html [content]="getJdHtmlContent()" (contentChanged)="contentChanged($event)"></app-dynamic-html>
+<div class="container" fxLayout fxLayoutGap="10px" style="height: 100%; width: 100%">
+    <div fxFlex="30%">
+        <div *ngFor="let jdField of jdFields">
+            <div style="margin-top: 10px"><span>{{jdField.order}} [{{jdField.id}}] {{jdField.title}}: {{jdField.value}}</span></div>
+        </div>
+    </div>
+    <div fxFlex="70%">
+        <app-dynamic-html [content]="getJdHtmlContent()" (contentChanged)="contentChanged($event)"></app-dynamic-html>
+    </div>
 </div>

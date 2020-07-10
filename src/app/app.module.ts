@@ -7,6 +7,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
 import { DynamicHTMLModule } from './dynamic-html/dynamic-html.index';
 import { JdFieldComponent } from './jd-field/jd-field.component';
 import { JdDocumentComponent } from './jd-document/jd-document.component';
+import { FlexModule } from '@angular/flex-layout';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { JdDocumentComponent } from './jd-document/jd-document.component';
                 {component: GreenTextComponent, selector: 'app-green-text'},
                 {component: JdFieldComponent, selector: 'jd-field'}
             ]
-        })
+        }),
+        FlexModule
     ],
     providers: [],
     bootstrap: [AppComponent]
