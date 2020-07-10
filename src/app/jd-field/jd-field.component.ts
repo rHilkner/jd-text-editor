@@ -11,8 +11,8 @@ import { DataService } from '../data.service';
 })
 export class JdFieldComponent implements DynamicComponent {
 
-    constructor(private eRef: ElementRef/*,
-                private dataService: DataService */) {}
+    constructor(private eRef: ElementRef,
+                private dataService: DataService) {}
 
     @Input() id: string;
     @Input() title: string;
@@ -22,14 +22,13 @@ export class JdFieldComponent implements DynamicComponent {
     private originalValue: string;
 
     onMount(attrs?: Map<string, string>, content?: string, element?: Element): void {
-        console.log('asddsadssa');
         this.id = attrs.get('id');
         this.title = attrs.get('title');
         this.value = attrs.get('value');
         this.order = Number(attrs.get('order'));
         this.originalValue = this.value;
-        // this.dataService.addJdFieldComponent(this);
-        console.log('asddsadssa');
+        this.dataService.addJdFieldComponent(this);
+        this.dataService.emitJdFields();
     }
 
     get jdField() {
@@ -44,7 +43,7 @@ export class JdFieldComponent implements DynamicComponent {
     setNewValue(newValue: string) {
         if (this.value !== newValue) {
             this.value = newValue;
-            // this.dataService.emitJdFields();
+            this.dataService.emitJdFields();
         }
     }
 
