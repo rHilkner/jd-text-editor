@@ -6,12 +6,12 @@ import { DynamicHTMLRef, DynamicHTMLRenderer } from './dynamic-html.renderer';
     selector: 'app-dynamic-html',
     template: '',
 })
-export class DynamicHTMLComponent implements DoCheck, OnInit, OnChanges, OnDestroy {
+export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
 
     @Input() content: string;
     @Output() contentChanged = new EventEmitter();
 
-    oldContent: string;
+    oldContent = '';
 
     private ref: DynamicHTMLRef = null;
 
@@ -19,10 +19,6 @@ export class DynamicHTMLComponent implements DoCheck, OnInit, OnChanges, OnDestr
         private renderer: DynamicHTMLRenderer,
         private elementRef: ElementRef,
     ) { }
-
-    ngOnInit(): void {
-        this.oldContent = this.content;
-    }
 
     ngOnChanges(_: SimpleChanges) {
         if (this.ref) {
@@ -32,15 +28,16 @@ export class DynamicHTMLComponent implements DoCheck, OnInit, OnChanges, OnDestr
 
         if (this.content && this.elementRef && this.content !== this.oldContent) {
             this.ref = this.renderer.renderInnerHTML(this.elementRef, this.content);
-            this.contentChanged.emit(this.content);
         }
+
+        this.emitContent();
     }
 
     ngDoCheck() {
         if (this.ref) {
             this.ref.check();
         }
-        this.contentChanged.emit(this.elementRef.nativeElement.innerHTML);
+        this.emitContent();
     }
 
     ngOnDestroy() {
@@ -53,6 +50,7 @@ export class DynamicHTMLComponent implements DoCheck, OnInit, OnChanges, OnDestr
     emitContent() {
         if (this.content && this.elementRef && this.content !== this.oldContent) {
             this.contentChanged.emit(this.content);
+            this.oldContent = this.content;
         }
     }
 

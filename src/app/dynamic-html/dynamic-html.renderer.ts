@@ -44,7 +44,7 @@ export class DynamicHTMLRenderer {
 
                 el.removeAttribute('ng-version');
 
-                if (cmpRef.instance.dynamicOnMount) {
+                if (cmpRef.instance.onMount) {
                     const attrsMap = new Map<string, string>();
                     if (el.hasAttributes()) {
                         Array.prototype.forEach.call(el.attributes, (attr: Attr) => {

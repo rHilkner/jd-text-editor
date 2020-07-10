@@ -23,7 +23,6 @@ export class AppComponent implements OnInit, AfterViewInit {
         this.dataService.jdFieldsObservable.subscribe(jdFields => {
             this.jdFields = jdFields;
             console.log(jdFields);
-            console.log(this.jdFieldComponentList);
         });
     }
 

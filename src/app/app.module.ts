@@ -8,6 +8,7 @@ import { DynamicHTMLModule } from './dynamic-html/dynamic-html.index';
 import { JdFieldComponent } from './jd-field/jd-field.component';
 import { JdDocumentComponent } from './jd-document/jd-document.component';
 import { FlexModule } from '@angular/flex-layout';
+import { JdFieldInputComponent } from './jd-field-input/jd-field-input.component';
 
 @NgModule({
     declarations: [
@@ -15,7 +16,8 @@ import { FlexModule } from '@angular/flex-layout';
         GreenTextComponent,
         SafeHtmlPipe,
         JdFieldComponent,
-        JdDocumentComponent
+        JdDocumentComponent,
+        JdFieldInputComponent
     ],
     imports: [
         BrowserModule,
