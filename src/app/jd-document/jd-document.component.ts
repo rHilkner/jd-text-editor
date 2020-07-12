@@ -8,19 +8,14 @@ import { DataService } from '../data.service';
   templateUrl: './jd-document.component.html',
   styleUrls: ['./jd-document.component.scss']
 })
-export class JdDocumentComponent implements AfterViewInit {
+export class JdDocumentComponent {
 
   @ViewChild(DynamicHTMLComponent) myRef: DynamicHTMLComponent;
   @ViewChildren(JdFieldComponent) jdFieldComponentList: QueryList<JdFieldComponent>;
 
   constructor(private dataService: DataService) {}
 
-  ngAfterViewInit(): void {
-    // console.log(this.jdFieldComponentList);
-  }
-
   contentChanged(newContent: string) {
-    // console.log(newContent);
     this.dataService.updateDocumentContents(newContent);
   }
 

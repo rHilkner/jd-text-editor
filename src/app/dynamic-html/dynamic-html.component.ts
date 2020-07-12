@@ -54,7 +54,7 @@ export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
         if (this.content && this.elementRef) {
             const newContent = this.dataService.buildFullHtml(this.content);
             if (newContent !== this.oldContent) {
-                this.contentChanged.emit(this.content);
+                this.contentChanged.emit(newContent);
                 this.oldContent = newContent;
             }
         }

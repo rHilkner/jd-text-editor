@@ -37,4 +37,8 @@ export class GreenTextComponent implements DynamicComponent {
             ` text="` + this.text + `"` +
             `</` + this.tagName + `>`;
     }
+
+    get dynamicComponentId(): string {
+        return this.tagName + this.fieldId;
+    }
 }
