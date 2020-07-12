@@ -13,18 +13,19 @@ export class JdDocumentComponent implements AfterViewInit {
   @ViewChild(DynamicHTMLComponent) myRef: DynamicHTMLComponent;
   @ViewChildren(JdFieldComponent) jdFieldComponentList: QueryList<JdFieldComponent>;
 
-  constructor(private getJdHtmlService: DataService) {}
+  constructor(private dataService: DataService) {}
 
   ngAfterViewInit(): void {
-    console.log(this.jdFieldComponentList);
+    // console.log(this.jdFieldComponentList);
   }
 
   contentChanged(newContent: string) {
-    console.log(newContent);
+    // console.log(newContent);
+    this.dataService.updateDocumentContents(newContent);
   }
 
-  getJdHtmlContent(): string {
-    return this.getJdHtmlService.getJdHtml();
+  getJdHtmlInitialContent(): string {
+    return this.dataService.jdHtml;
   }
 
 }

@@ -1,9 +1,11 @@
 import { Component, DoCheck, ElementRef, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, } from '@angular/core';
 
 import { DynamicHTMLRef, DynamicHTMLRenderer } from './dynamic-html.renderer';
+import { DataService } from '../data.service';
 
 @Component({
-    selector: 'app-dynamic-html',
+    // tslint:disable-next-line:component-selector
+    selector: 'dynamic-html',
     template: '',
 })
 export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
@@ -18,6 +20,7 @@ export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
     constructor(
         private renderer: DynamicHTMLRenderer,
         private elementRef: ElementRef,
+        private dataService: DataService
     ) { }
 
     ngOnChanges(_: SimpleChanges) {
@@ -26,7 +29,7 @@ export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
             this.ref = null;
         }
 
-        if (this.content && this.elementRef && this.content !== this.oldContent) {
+        if (this.content && this.elementRef) {
             this.ref = this.renderer.renderInnerHTML(this.elementRef, this.content);
         }
 
@@ -48,9 +51,12 @@ export class DynamicHTMLComponent implements DoCheck, OnChanges, OnDestroy {
     }
 
     emitContent() {
-        if (this.content && this.elementRef && this.content !== this.oldContent) {
-            this.contentChanged.emit(this.content);
-            this.oldContent = this.content;
+        if (this.content && this.elementRef) {
+            const newContent = this.dataService.buildFullHtml(this.content);
+            if (newContent !== this.oldContent) {
+                this.contentChanged.emit(this.content);
+                this.oldContent = newContent;
+            }
         }
     }
 
