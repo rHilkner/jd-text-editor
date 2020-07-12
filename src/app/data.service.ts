@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JdFieldComponent } from './jd-field/jd-field.component';
-import { BehaviorSubject, range } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { JdField } from './models/jd-field.model';
 import { JdDocumentComponent } from './jd-document/jd-document.component';
 import { Util } from './util/util';
@@ -15,6 +15,7 @@ export class DataService {
     private jdFieldComponents: { [id: string]: JdFieldComponent } = {};
     private jdDocumentComponent: JdDocumentComponent;
     private documentContents = '';
+    private oldDocumentContents = '';
     private shouldPersistDocContents = true;
 
     constructor() {
@@ -28,10 +29,11 @@ export class DataService {
     async persistDocumentContents() {
         console.log('Starting async thread to persist document contents every 10 seconds');
         while (true) {
-            if (this.shouldPersistDocContents) {
+            if (this.shouldPersistDocContents && this.oldDocumentContents !== this.documentContents) {
                 console.log('Saving data on backend: \n' + this.documentContents);
+                this.oldDocumentContents = this.documentContents;
             }
-            await Util.sleep(10000);
+            await Util.sleep(5000);
         }
     }
 
@@ -72,7 +74,7 @@ export class DataService {
             const jdFieldElem = jdFieldElements[i];
             const fieldId = jdFieldElem.getAttribute('id');
             const jdFieldComponent = this.jdFieldComponents[fieldId];
-            jdFieldElem.innerHTML = jdFieldComponent.componentAsHtml;
+            jdFieldElem.outerHTML = jdFieldComponent.componentAsHtml;
         }
         return doc.body.innerHTML;
     }

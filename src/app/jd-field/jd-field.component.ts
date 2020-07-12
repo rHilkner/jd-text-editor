@@ -68,4 +68,8 @@ export class JdFieldComponent implements DynamicComponent {
             ` order="` + this.jdField.order + `">` +
             `</` + this.tagName + `>`;
     }
+
+    get dynamicComponentId(): string {
+        return this.tagName + this.id;
+    }
 }
