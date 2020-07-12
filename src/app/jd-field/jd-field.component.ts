@@ -56,13 +56,16 @@ export class JdFieldComponent implements DynamicComponent {
         }
     }
 
-    buildHtmlString() {
-        const tagName = this.eRef.nativeElement.tagName;
-        return `<` + tagName +
+    get tagName(): string {
+        return this.eRef.nativeElement.tagName.toLowerCase();
+    }
+
+    get componentAsHtml(): string {
+        return `<` + this.tagName +
             ` id="` + this.jdField.id + `"` +
             ` title="` + this.jdField.title + `"` +
-            ` value="` + this.jdField.value + `">` +
+            ` value="` + this.jdField.value + `"` +
             ` order="` + this.jdField.order + `">` +
-            `</` + tagName + `>`;
+            `</` + this.tagName + `>`;
     }
 }

@@ -34,6 +34,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     getJdHtmlContent(): string {
-        return this.dataService.getJdHtml();
+        return this.dataService.jdHtml;
     }
 }

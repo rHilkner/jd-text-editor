@@ -15,7 +15,6 @@ export class GreenTextComponent implements DynamicComponent {
     constructor(private eRef: ElementRef) {}
 
     onMount(attrs?: Map<string, string>, content?: string, element?: Element): void {
-        console.log('asddsadssa');
         this.text = attrs.get('text');
     }
 
@@ -26,5 +25,16 @@ export class GreenTextComponent implements DynamicComponent {
         } else {
             this.text = 'clicked outside';
         }
+    }
+
+    get tagName(): string {
+        return this.eRef.nativeElement.tagName;
+    }
+
+    get componentAsHtml(): string {
+        return `<` + this.tagName +
+            ` fieldId="` + this.fieldId + `"` +
+            ` text="` + this.text + `"` +
+            `</` + this.tagName + `>`;
     }
 }
